@@ -1,0 +1,31 @@
+{
+"row" : {
+  "class" : "android.widget.TableRow"
+, "content" : {
+     "currency" : {
+        "class" : "android.widget.TextView"
+       ,"attributes" : {
+          "setText" : "'currency'"
+         ,"setShadowLayer" :
+            [ "6.0", "2.0", "2.0", "android.graphics.Color.RED"]
+        }
+     }
+    ,"EUR" : {
+        "class" : "android.widget.TextView"
+       ,"attributes" : {
+          "setText" : "'EUR'"
+          ,"setShadowLayer" :
+            [ "6.0", "2.0", "2.0", "android.graphics.Color.RED"]
+        }
+     }
+    ,"USD" : {
+        "class" : "android.widget.TextView"
+       ,"attributes" : {
+          "setText" : "'USD'"
+          ,"setShadowLayer" :
+            [ "6.0", "2.0", "2.0", "android.graphics.Color.RED"]
+        }
+     }
+   }
+  }
+}

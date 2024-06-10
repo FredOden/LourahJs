@@ -1,0 +1,28 @@
+{
+  "news": {
+    "webView": {
+      "javascriptEnabled": "true"
+      }
+    }
+  ,"http": {
+    "request": {
+      "headers": {
+        // To pass through CloudFlare
+        // @20201027: at least "User-Agent" headers
+        "User-Agent":"Lourah.http.GET"
+        //,"Accept-Language":"fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"
+        //,"Accept-Encoding":"gzip, deflate, br"
+        //,"Sec-Fetch-Dest":"document"
+        //,"Sec-Fetch-User":"?1"
+        //,"Sec-Fetch-Mode":"navigate"
+        //,"Sec-Fetch-Site":"none"
+        //,"Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+        //,"User-Agent":"Mozilla/5.0 (Linux; Android 9; BV9700Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.110 Mobile Safari/537.36"
+        //,"Upgrade-Insecure-Requests":"1"
+        //,"Save-Data":"on"
+        //,"Cache-Control":"max-age=0"
+        //,"Connection":"keep-alive"
+        }
+      }
+    }
+  }

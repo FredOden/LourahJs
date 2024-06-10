@@ -1,0 +1,73 @@
+{
+  "ui"  : {
+     "ll" : {
+        "class" : "android.widget.LinearLayout"
+       ,"attributes" : {
+           "setOrientation" : "android.widget.LinearLayout.VERTICAL"
+        }
+       ,"content" : {
+       
+          "ed" : {
+            "class" : "android.widget.EditText"
+           ,"attributes" : {
+               "setSingleLine" : "true"
+             }
+          }
+        
+        , "exec" : {
+            "class" : "android.widget.Button"
+            ,"attributes" : {
+                "setText" : "'exec'"
+            }
+          }
+       
+         ,"multiAccount" : {
+            "class" : "android.widget.Button"
+            ,"attributes" : {
+                "setText" : "'Multi Account'"
+            }
+           
+         }
+         ,"scroll" : {
+            "class" : "android.widget.ScrollView"
+           ,"content" : {
+
+              "tv" : {
+                 "class" : "android.widget.TextView"
+                ,"attributes" : {
+                    "setBackgroundColor" : "android.graphics.Color.BLACK"
+                   ,"setTextColor" : "android.graphics.Color.GREEN"
+                 }
+               }
+             }
+          }
+        
+        }
+     }
+  }
+  
+  ,"toolButtons"  : {
+       "b" : {
+        "class" : "android.widget.Button"
+       ,"attributes" : {
+           
+        }
+     }
+  }
+  
+  ,"tools" : {
+     "ip-addr" : [
+        "ifconfig | grep 'inet addr'"
+     ]
+    ,"netstat" : [
+        "netstat"
+     ]
+    ,"process" : [
+        "ps"
+       ,"ls - l /apps"
+     ]
+    ,"aapt" : [
+        "aapt --help"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+"newsapi" : {
+        "key" : "Purchase a valid key"
+      , "owner" : "your.email@mail.xxx"
+      , "banner" : "powered by https://newsapi.org"
+      , "endpoint" : "https://newsapi.org/v2"
+      , "apikey" : "apikey"
+      }
+}

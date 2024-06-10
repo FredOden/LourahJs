@@ -1,0 +1,40 @@
+{
+  "ll" : {
+     "class" : "android.widget.LinearLayout"
+    ,"attributes" : {
+        "setOrientation" : {
+           "type" : "int",
+           "value" : "android.widget.LinearLayout.VERTICAL"
+        }
+     }
+    ,"content" : {
+        "tv" : {
+          "class": "android.widget.TextView"
+         ,"attributes" : {
+            "setText" : {
+              "type" :  "java.lang.CharSequence",
+              "value" :  "hello" 
+              },
+             "setBackgroundColor" : {
+              "type" : "int",
+              "value" : "0xff00ff7f|0"
+              }
+           }
+        }
+        ,
+        "bt" : {
+            "class" : "android.widget.Button"
+           ,"attributes" : {
+              "setText" : { 
+                "type" : "java.lang.CharSequence" ,
+                "value": "Okay !"
+                }
+             }
+          }
+        ,
+        "intent" : {
+          
+          }     
+      }
+   }
+}

@@ -1,0 +1,17 @@
+soit {var k = {
+    name:"la consommation annuelle"
+    ,unit:"kWh"
+    ,set val(v) {
+       this.value = v;
+       }
+    ,get val() {
+       return this.value;
+       }
+    }}
+et {var q = {
+    name:"la consommation quotidienne"
+    ,get val: { return k/365 }
+    }}
+si {k.val = 1234} alors {q.val}.
+
+{}

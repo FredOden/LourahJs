@@ -1,0 +1,8 @@
+{
+  name: "Mme MÉLANIE CASTEL"
+  ,kind: "tenant"
+  ,street: "14 ROUTE DE BIRAUD"
+  ,zip: "33760"
+  ,city: "FALEYRAS"
+  ,rent: 604.96
+  }

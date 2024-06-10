@@ -1,0 +1,5 @@
+print 1;
+def a(z,f,g) z*z + f^g;
+a(5,2,3);
+def fact(n) if n eq 2 then 2; else n*fact(n - 1);
+fact(5);

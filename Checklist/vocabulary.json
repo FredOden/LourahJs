@@ -1,0 +1,13 @@
+{
+	"@Start": {
+		"fr": "démarrage"
+		,"default": "starting"
+		}
+	,"@Engin": {
+		"default": "engin check"
+		,"fr": "vérification du moteur"
+		}
+	,"@ListOfItemsToCheck" : {
+	    "fr": "Liste des éléments à vérifier"
+	    }
+}

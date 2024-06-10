@@ -1,0 +1,20 @@
+{
+"main" : {
+     "class" : "Packages.android.widget.LinearLayout"
+    , "LayoutParams" : {
+           "width" : "MATCH_PARENT"
+         , "height" : "WRAP_CONTENT"
+      }
+    , "content" : {
+      "username" : {
+      "class" : "Packages.android.widget.TextView"
+     ,"attributes" {
+         "text" : "user"
+         ,"size" : "Packages.android.util.TypedValue.COMPLEX_UNIT_SP, 20"
+         }
+      }
+    }
+
+   ,
+    }
+}

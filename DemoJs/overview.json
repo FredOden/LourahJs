@@ -1,0 +1,47 @@
+{
+  "ll" : {
+     "class" : "android.widget.LinearLayout"
+    ,"attributes" : {
+        "setOrientation" :
+           "android.widget.LinearLayout.VERTICAL"
+     }
+    ,"content" : {
+        "textView" : {
+          "class": "android.widget.TextView"
+         ,"attributes" : {
+              "setText":"'hello'" 
+             ,"setBackgroundColor":
+               ["0xff00ff7f|0"]
+             ,"setGravity":
+               "android.view.Gravity.CENTER"
+             ,"setTextSize": "14"
+             ,"setWidth": "10"
+             ,"setHeight": "600"
+           }
+        }
+        ,
+        "editText" : {
+            "class" : "android.widget.EditText"
+        }
+        ,
+        "imageView" : {
+            "class" : "android.widget.ImageView"
+        }
+        ,
+        "button" : {
+            "class" : "android.widget.Button"
+           ,"attributes" : {
+              "setText":"'hit me'"
+             ,"setWidth" : "50"
+           }
+         }
+       ,
+       "intent" : {
+            "class" : "android.widget.Button"
+           ,"attributes" : {
+              "setText" : "'intent ...'"
+           }
+         }    
+      }
+   }
+}

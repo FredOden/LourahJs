@@ -1,0 +1,6 @@
+var Lourah = Lourah || {}
+(function() {
+Lourah.dbms = Lourah.dbms || {};
+if (Lourah.dbms.persistence) return;
+
+})();

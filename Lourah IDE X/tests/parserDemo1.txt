@@ -1,0 +1,19 @@
+oo=1000;
+def o(i,j) {
+print oo;
+print i;
+oo = 8884+1;
+print oo;
+(i+44)*j+i;}
+i=π;
+
+q=2;
+p=1;
+u=o(p,q);
+print i;
+print u;
+print oo;
+def f(n) if n eq 1 then i; else n*f(n-1);
+k=f(10);
+
+

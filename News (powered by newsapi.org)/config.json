@@ -1,0 +1,14 @@
+{
+  "news": {
+    "webView": {
+      "javascriptEnabled": "true"
+      }
+    }
+  ,"http": {
+    "request": {
+      "headers": {
+        "User-Agent":"Lourah.http.GET"
+        }
+      }
+    }
+  }

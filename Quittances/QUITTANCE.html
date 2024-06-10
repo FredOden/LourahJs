@@ -1,0 +1,18 @@
+<html>
+	<head>
+    <style>
+      body { color : olive; }
+      .person { font-style : italic; font-weight : bold; color : blue;}
+      .amount { font-weight : bold; background-color : olive; color : white; font-size: 20px;}
+    </style>
+	</head>
+	<body>
+		<h1>QUITTANCE DE LOYER <span class="amount">@numero<span></h1>
+		<span>PROPRIETAIRE:
+			<span class="person">@owner.name<br>@owner.street<br>@owner.zip @owner.city</span>
+		</span>
+		<p><span>RECU de <span class="person">@tenant.name</span> la somme<br>de <span class="amount">@textAmount</span></span>
+		<p><span>au titre du paiement du loyer et des charges du logement sis<br><span class="person">@tenant.street<br>@tenant.zip @tenant.city</span></span>
+
+	</body>
+</html>

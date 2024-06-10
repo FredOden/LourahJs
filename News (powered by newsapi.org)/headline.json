@@ -1,0 +1,30 @@
+{
+"headline" : {
+     "row" : {
+        "class" : "android.widget.TableRow"
+       ,"content" : {
+           "ll" : {
+              "class" : "android.widget.LinearLayout"
+             ,"attributes" : {
+                "setOrientation" :
+                    "android.widget.LinearLayout.VERTICAL"
+              }
+             ,"content" : {
+                "title" : {
+                   "class" : "android.widget.TextView"
+                  ,"attributes" : {
+                     "setText" : "'<<TITLE>>'"
+                    ,"setBackgroundColor" : "0x3f007fff|0"
+                   }
+                } 
+               ,"description" : {
+                   "class" : "android.widget.TextView"
+                  ,"attributes" : {
+                     "setText" : "'<<DESCRIPTION>>'"
+                  }
+              }
+           }
+       }
+     }
+  }
+}

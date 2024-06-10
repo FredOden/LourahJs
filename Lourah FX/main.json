@@ -1,0 +1,41 @@
+{
+"main" : {
+       "class" : "android.widget.LinearLayout"
+      ,"attributes" : {
+        "setOrientation" :
+           "android.widget.LinearLayout.VERTICAL"
+      }
+    ,"content" : {
+        "fx" : {
+            "class" : "android.widget.Button"
+           ,"attributes" : {
+              "setText":"'Get FX'"
+             ,"setBackgroundColor":
+                 "0x3fff00bf|0"
+             ,"setShadowLayer" :
+               [ "6.0", "2.0", "2.0", "android.graphics.Color.BLUE"]
+           }
+        }
+       ,"header" : {
+            "class" : "android.widget.TableLayout"
+            ,"attributes" : {
+                "setStretchAllColumns" : "true"
+               ,"setShrinkAllColumns" : "true"
+             }
+         
+        }
+       ,"scroll" : {
+            "class" : "android.widget.ScrollView"
+           ,"content" : {
+              "table" : {
+                 "class" : "android.widget.TableLayout"
+                ,"attributes" : {
+                   "setStretchAllColumns" : "true"
+                  ,"setShrinkAllColumns" : "true"
+                 }
+              }
+           }
+         }   
+      }
+  }
+}

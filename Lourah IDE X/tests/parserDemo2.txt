@@ -1,0 +1,12 @@
+if not x le 6 then 
+  {(4*(1+2)*3*2+1)*π;}
+else {
+ f = for i = 3 to -1 step x-8 {
+   f = f + √2*√(√81+4^2)*3*√(π-i);
+   print(f);
+   }}
+a[f]=√(f+2);
+√a[f];;
+a = 1;
+b = 0;
+r= a and b or 1;

@@ -1,0 +1,30 @@
+
+
+var context = __Activity__.getApplicationContext();
+
+if(
+  context.checkCallingOrSelfPermission(
+    android.Manifest.permission.ACCESS_WIFI_STATE
+    )
+  !=
+  android.content.pm.PackageManager.PERMISSION_GRANTED) {
+
+  __Activity__.requestPermissions(
+    [
+      android.Manifest.permission.ACCESS_WIFI_STATE
+      ]
+    , 1);
+  }
+
+
+var result = context.checkCallingOrSelfPermission(
+  android.Manifest.permission.ACCESS_WIFI_STATE
+  );
+console.log("result::" + result);
+if (result == 0) {
+  var wifiManager = context.getSystemService(android.content.Context.WIFI_SERVICE);
+  wifiInfo = wifiManager.getConnectionInfo();
+  ssid = wifiInfo.getSSID();
+  console.log("SSID::<" + ssid + ">");
+  }
+/**/

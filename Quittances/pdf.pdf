@@ -1,0 +1,110 @@
+%PDF-1.4
+%¥±ë
+
+1 0 obj
+<<     /Type /Catalog
+     /Pages 2 0 R
+>>
+endobj
+
+2 0 obj
+<<     /Type /Pages
+     /Kids [3 0 R]
+     /Count 1
+     /MediaBox [0 0 595 842]
+>>
+endobj
+
+3 0 obj
+<<     /Type /Page
+     /Parent 2 0 R
+     /Resources 5 0 R
+     /Contents 8 0 R
+>>
+endobj
+
+4 0 obj
+<<     /F1 6 0 R
+     /F2 7 0 R
+>>
+endobj
+
+5 0 obj
+<<     /Font 4 0 R
+>>
+endobj
+
+6 0 obj
+<<     /Type /Font
+     /Subtype /Type1
+     /BaseFont /Times-Roman
+     /Encoding /WinAnsiEncoding
+>>
+endobj
+
+7 0 obj
+<<     /Type /Font
+     /Subtype /Type1
+     /BaseFont /Courier-BoldOblique
+     /Encoding /WinAnsiEncoding
+>>
+endobj
+
+8 0 obj
+<<     /Length 390
+>>
+stream
+ q
+2 w
+60 742 m
+450 742 l
+60 690 m
+450 690 l
+ S
+0 1 0 RG
+48 w
+451 716 m
+650 716 l
+ S
+ Q
+
+ BT
+/F1 36 Tf
+0.75 0.3 0.2 rg
+1 0 0 1 60 700 Tm
+<5965702c204d72204652c944c9524943204f44454e21> Tj
+0 -45 Td
+/F2 28 Tf
+0 1 1 rg
+<e76120632765737420626f6e> Tj
+ ET
+
+BT
+0 0 0.5 rg
+30 60 Td
+/F2 16 Tf
+16 TL
+(the quick brown fox jumps)Tj 1 1 (over the lazy dog)" 1 1(that's it.)"
+1 0 0 RG 30 44 200 32 re S
+ET
+endstream
+endobj
+
+xref
+0 9
+0000000000 65535 f 
+0000000018 00000 n 
+0000000077 00000 n 
+0000000178 00000 n 
+0000000278 00000 n 
+0000000329 00000 n 
+0000000367 00000 n 
+0000000486 00000 n 
+0000000613 00000 n 
+trailer
+<< /Root 1 0 R
+ /Size 9
+>>
+startxref
+1059
+%%EOF

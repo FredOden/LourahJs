@@ -1,0 +1,15 @@
+{
+"Faleyras" : [
+{
+ "name" : "BD",
+  "wins" : { "points" : { "5" : 145 }, "destroys" : 1 },
+  "needs" : { "energy" : 1, "objects" : { "xxxxxx" : 2 }}
+ }
+ ,
+ {
+ "name" : "RR",
+  "wins" : { "points" : { "4" : 400}, "destroys" : 1 },
+  "needs" : { "energy" : 1, "objects" : { "xxxxxx" : 2 }}
+ }
+]
+}

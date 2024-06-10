@@ -1,0 +1,22 @@
+{
+"Faleyras": [
+["BD", 145, 5, 1, 1, {"canard":1, "ventouse":1}],
+["RR", 400, 4, 3, 3, {"pince":1, "haut-parleur":2}],
+["MPG", 240, 3, 2, 2, {"incendie":1, "jumelles": 1}],
+["T", 400, 4, 3, 4, {"helice":1, "enclume":1}],
+["M", 440, 5, 3, 2, {"jumelles":1, "incendie":2, "enclume":2}],
+["V2T", 350, 7,2,3, {"ventouse":1, "canard":1, "helice":2}],
+["RVV",485,3,4,4,{"essence":2,"caisse":2}],
+["TD",660,2,6,6,{"haut-parleur":1, "pince":1, "helice":2}],
+["MV",590,5,4,4,{"ventouse":2, "essence":2, "bottes":2}],
+["B",660,2,6,6,{"helice":1, "caisse":2, "canard":3}],
+["P",845,3,7,7,{"canard":1, "bottes":3, "incendie":3}],
+["MA",970,3,8,6,{"bottes":1, "haut-parleur":2, "jumelles":3}],
+["M2M",1065,4,8,6,{"caisse":2, "canard":2, "pince":5}],
+["16T",880,5,6,6,{"pince":1, "incendie":2, "enclume":4}],
+["A",990,2,9,9,{"essence":1, "jumelles":2, "caisse":5}],
+["CDD",1100,2,10,10,{"essence":2, "jumelles":3, "bottes":2}],
+["P2C",1170,5,8,7,{"incendie":3, "ventouse":3, "helice":4}],
+["M2SB",1100,2,10,8,{"bottes":2, "ventouse":2, "haut-parleur":2}]
+]
+}

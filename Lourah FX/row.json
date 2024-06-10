@@ -1,0 +1,50 @@
+{
+  "row" : {
+    "class" : "android.widget.TableRow"
+    , "content" : {
+      "currency" : {
+        "class" : "android.widget.TextView"
+        ,"attributes" : {
+          "setText" : "'currency'"
+          ,"setShadowLayer" :
+          [ "6.0", "2.0", "2.0", "android.graphics.Color.RED"]
+          }
+        }
+      ,"EUR" : {
+        "class" : "android.widget.TextView"
+        ,"attributes" : {
+          "setText" : "'EUR'"
+          ,"setShadowLayer" :
+          [ "6.0", "2.0", "2.0", "android.graphics.Color.RED"]
+          }
+        }
+      ,"percent_change_1h" : {
+        "class" : "android.widget.TextView"
+        ,"attributes" : {
+          "setText" : "'%1h'"
+          , "setWidth" : "10"
+          ,"setShadowLayer" :
+          [ "6.0", "2.0", "2.0", "android.graphics.Color.RED"]
+          }
+        }
+      ,"percent_change_24h" : {
+        "class" : "android.widget.TextView"
+        ,"attributes" : {
+          "setText" : "'%1d'"
+          , "setWidth" : "10"
+          ,"setShadowLayer" :
+          [ "6.0", "2.0", "2.0", "android.graphics.Color.RED"]
+          }
+        }
+      ,"percent_change_7d" : {
+        "class" : "android.widget.TextView"
+        ,"attributes" : {
+          "setText" : "'%7d'"
+          , "setWidth" : "10"
+          ,"setShadowLayer" :
+          [ "6.0", "2.0", "2.0", "android.graphics.Color.RED"]
+          }
+        }
+      }
+    }
+  }

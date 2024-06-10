@@ -1,0 +1,186 @@
+{
+"articles" : {
+     "panel" : {
+        "class" : "android.widget.LinearLayout"
+       ,"attributes" : {
+           "setOrientation" :
+               "android.widget.LinearLayout.VERTICAL"
+        }
+       ,"content" : {
+            "edition" : {
+               "class" : "android.widget.TextView"
+              ,"attributes" : {
+                  "setTextSize" : "24"
+                 ,"setBackgroundColor" : 
+                      "0x3fff2f2f|0"
+               }
+            }
+       }
+     }
+  }
+,
+"main" : {
+     "scroll" : {
+        "class" : "android.widget.ScrollView"
+       ,"content" :{
+          "list" : {
+              "class" : "android.widget.TableLayout"
+             ,"attributes" : {
+                "setStretchAllColumns" : "true"
+               ,"setShrinkAllColumns" : "true"
+                ,"setBackgroundColor" : "0xffcfdffc|0"
+             }
+          }
+       }
+     }
+  }
+  ,
+"headline" : {
+     "row" : {
+        "class" : "android.widget.TableRow"
+       ,"attributes" : {
+          "setBackgroundColor" :
+                 "0xffcacbbc|0"
+        }
+       ,"content" : {
+           "ll" : {
+              "class" : "android.widget.LinearLayout"
+             ,"attributes" : {
+                "setOrientation" :
+                    "android.widget.LinearLayout.VERTICAL"
+                ,"setBackgroundColor" :
+                 "0xffcacbbc|0"
+              }
+             ,"content" : {
+                "title" : {
+                   "class" : "android.widget.Button"
+                  ,"attributes" : {
+                     "setText" : "'<<TITLE>>'"
+                    ,"setTextSize" : "20"
+                    ,"setBackgroundColor" : "0xffcfdffc|0"
+                    ,"setShadowLayer" :
+               [ "6.0", "5.0", "5.0", "android.graphics.Color.GRAY"]
+                   }
+                } 
+               ,"description" : {
+                   "class" : "android.widget.TextView"
+                  ,"attributes" : {
+                     "setText" : "'<<DESCRIPTION>>'"
+                    ,"setTextSize" : "18"
+                    ,"setTypeface" :
+                       ["null", "android.graphics.Typeface.ITALIC"]
+                    ,"setBackgroundColor" :
+                 "0xffcacbbc|0"
+                  }
+              }
+           }
+       }
+     }
+  }
+}
+,
+"webnews" : {
+    "view" : {
+        "class" : "android.widget.LinearLayout"
+       ,"attributes" : {
+                "setOrientation" :
+                    "android.widget.LinearLayout.VERTICAL"
+                     ,"setBackgroundColor" : "0xffcacbbc|0"
+        }
+       ,"content" : {
+            "share": {
+               "class" : "android.widget.Button"
+              ,"attributes" : {
+                  "setText" : "'@share'"
+               }
+           }
+           ,"webview" : {
+               "class" : "android.webkit.WebView"
+            }
+           
+        }
+     }
+  }
+,
+"editions" : {
+    "panel" : {
+           "class" : "android.widget.LinearLayout"
+          ,"attributes" : {
+              "setOrientation" :
+                 "android.widget.LinearLayout.VERTICAL"
+              ,"setBackgroundColor" :
+                 "0xffcacbbc|0"
+           }
+          ,"content" : {
+              "choose" : {
+                "class" : "android.widget.TextView"
+               ,"attributes" : {
+                  "setText" : "'Choose edition'"
+                 ,"setTextSize" : "16"
+                 ,"setShadowLayer" :
+               [ "6.0", "2.0", "2.0", "android.graphics.Color.BLUE"]
+                }
+              }
+             ,"scroll" : {
+                "class" : "android.widget.ScrollView"
+               ,"content" : {
+                   "table" : {
+                      "class" : "android.widget.TableLayout"
+                     ,"attributes" : {
+                        "setStretchAllColumns" : "true"
+                       ,"setShrinkAllColumns" : "true"
+                      }
+                   }
+                 }
+             }
+           }
+        
+        }
+     
+ }
+, "welcome" : {
+     "msg" : {
+        "class" : "android.widget.TextView"
+       ,"attributes" : {
+           "setText" : "'@welcome'"
+           ,"setTextSize": "20"
+           ,"setBackgroundColor":
+                 "0x00ffffff|0"
+           ,"setShadowLayer" :
+               [ "6.0", "2.0", "2.0", "android.graphics.Color.MAGENTA"]
+           ,"setGravity" : "android.view.Gravity.CENTER"
+           ,"setTypeface" :
+                       ["null", "android.graphics.Typeface.BOLD_ITALIC"]
+        }
+     }
+}
+, "vocabulary" : {
+     "Choose edition" : {
+         "fr" : "Veuillez choisir une édition nationale"
+     }
+    ,"@refreshing" : {
+         "fr" : "rafraîchissement des informations"
+        ,"de" : "neue nachrichtung abkomen!(deutsch ???)"
+        ,"default" : "refreshing information list"
+     }
+    ,"@title" : {
+        "default" : "Lourah world news"
+       ,"fr" : "Lourah infos mondiales"
+     }
+    ,"@welcome" : {
+        "default" : "Welcome to Lourah\n\"World News\"\ndevelopped by Lourah\nPowered by LourahJsFramework & http://newsapi.org"
+       ,"fr" : "Bienvenue dans\n\"Lourah infos mondiales\"\nmis au point par Lourah\nPowered by LourahJsFramework & http://newsapi.org"
+    }
+    ,"@main_bg" : {
+        "default" : "0xffcacbbc"
+    }
+    ,"@share" : {
+        "default" : "share this news"
+       ,"fr" : "partager l'information"
+    }
+    ,"@shareWith" : {
+        "default" : "share this news with"
+       ,"fr" : "partager cette information avec"
+    }
+   }
+}
