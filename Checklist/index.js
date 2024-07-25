@@ -1,4 +1,4 @@
-Activity.importScript(Lourah.jsFramework.parentDir() + "/Overview.js");
+Activity.importScript(Lourah.jsFramework.parentDir() + "/Lourah.android.Overview.js");
 Activity.setTitle("Checklist by Lourah");
 
 Lourah.jsFramework.setOnBackButtonListener(() => {
