@@ -4,7 +4,7 @@ Lourah.jsFramework.setOnBackButtonListener(() => {
     return false;
     });
 
-Activity.importScript(Lourah.jsFramework.parentDir() + "/Overview.js");
+Activity.importScript(Lourah.jsFramework.parentDir() + "/Lourah.android.Overview.js");
 Activity.importScript(Lourah.jsFramework.parentDir() + "/Amadeus.js");
 
 function titledEdit(name, label, def) {
@@ -91,17 +91,7 @@ function log(text) {
         }));
   }
 
-var aID = new Lourah.gds.Amadeus.Id({
-  activity:Activity
-  , user: "your.email@mail.xx"
-  , appli: "Your appli"
-  , key:"A key"
-  , secret:"The secret See amadeus documentation"
-  , authorizationServer:"https://test.api.amadeus.com/v1/security/oauth2/token"
-  , endpoint:"https://test.api.amadeus.com/v2"
-  , logger:log
-    }
-  );
+var aID = new Lourah.gds.Amadeus.Id(JSON.parse(path2String(Lourah.jsFramework.parentDir() + "/Amadeus.key.json"));
 
 var amd = new Lourah.gds.Amadeus(aID);
 

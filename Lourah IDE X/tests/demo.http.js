@@ -2,7 +2,7 @@ Activity.importScript(Lourah.jsFramework.parentDir() + "/Lourah.http.Protocol.js
 Activity.importScript(Lourah.jsFramework.parentDir() + "/Lourah.socket.Server.js");
 Activity.importScript(Lourah.jsFramework.parentDir() + "/Lourah.http.js2xml.J2X.js");
 Activity.importScript(Lourah.jsFramework.parentDir() + "/Lourah.http.js2xml.CSS.js");
-Activity.importScript(Lourah.jsFramework.parentDir() + "/Overview.js");
+Activity.importScript(Lourah.jsFramework.parentDir() + "/Lourah.android.Overview.js");
 
 var Lourah = Lourah || {};
 (function () {

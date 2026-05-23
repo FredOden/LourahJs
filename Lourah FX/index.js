@@ -2,10 +2,18 @@
 Lourah FX - by the Bitcoin as pivot
 */
 
-Activity.importScript(Lourah.jsFramework.parentDir() + "/Overview.js");
-Activity.importScript(Lourah.jsFramework.parentDir() + "/http.js");
+Activity.importScript(Lourah.jsFramework.parentDir() + "/Lourah.android.Overview.js");
+Activity.importScript(Lourah.jsFramework.parentDir() + "/Lourah.http.GET.js");
 
 Activity.setTitle(Lourah.jsFramework.name());
+
+/*
+//var KEY = "6d140d05-8e8b-4426-8132-f19ed034a20a";
+var PRODUCTIONKEY = "6d140d05-8e8b-4426-8132-f19ed034a20a";
+
+var TESTKEY = "67bc7543-18f2-4054-8cdf-982b661604dd";
+*/
+
 
 coinMarketCapApi = {
   stage: "pro"
@@ -17,12 +25,12 @@ coinMarketCapApi = {
   
   ,sandBox: {
     endPoint:"sandbox-api.coinmarketcap.com/v1/cryptocurrency/quotes"
-    ,key: "place valid key here"
+    ,key: "67bc7543-18f2-4054-8cdf-982b661604dd"
     }
   
   ,pro: {
     endPoint: "pro-api.coinmarketcap.com/v1/cryptocurrency/quotes"
-    ,key: "place valid key here"
+    ,key: "6d140d05-8e8b-4426-8132-f19ed034a20a"
     }
 
   ,v1 : "sandbox-api.coinmarketcap.com/v1"

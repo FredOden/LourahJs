@@ -1,5 +1,8 @@
-Activity.importScript(Lourah.jsFramework.parentDir() + "/Lourah.android.Overview.js");
-Activity.importScript(Lourah.jsFramework.parentDir() + "/Lourah.graphics.g2d.js");
+let github = "https://github.com/FredOden/LourahJs/raw/master"
+Activity.importScript(
+   github
+   + "/Lourah.android.Overview.js");
+Activity.importScript(github + "/Lourah.graphics.g2d.js");
 
 var screen = {
   $ll: {

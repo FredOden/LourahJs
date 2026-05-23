@@ -157,7 +157,7 @@ function test() {
 
 Activity.importScript(
   Lourah.jsFramework.parentDir()
-  + "/Overview.js"
+  + "/Lourah.android.Overview.js"
   );
 
 var screen = {

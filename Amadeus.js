@@ -92,6 +92,7 @@ var Lourah = Lourah || {};
             uriEncodedRequest +=  ((uriEncodedRequest)?"&":"") + field + "=" + request[field];
         }
         uriEncodedRequest = encodeURI(uriEncodedRequest);
+	    //log(Lourah.gds.Amadeus.Id, "httpPost(" + endPoint + "," + api + "," + uriEncodedRequest + ")");
         var url = new java.net.URL(endPoint + api);
         //var url = new java.net.URL("https://www.google.com");
         var http = java.net.HttpURLConnection(url.openConnection());

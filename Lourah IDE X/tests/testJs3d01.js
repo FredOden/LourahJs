@@ -1,4 +1,4 @@
-Activity.importScript(Lourah.jsFramework.parentDir() + "/Overview.js");
+Activity.importScript(Lourah.jsFramework.parentDir() + "/lourah.android.Overview.js");
 Activity.importScript(Lourah.jsFramework.dir() + "/js3d.js");
 
 var i = java.lang.System.currentTimeMillis();

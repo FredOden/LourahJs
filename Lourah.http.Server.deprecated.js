@@ -1,5 +1,4 @@
 var Lourah = Lourah || {};
-// DEPRECATED
 Activity.importScript(Lourah.jsFramework.parentDir() + "/Lourah.http.util.js");
 (function () {
     Lourah.http = Lourah.http || {};
