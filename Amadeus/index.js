@@ -91,7 +91,7 @@ function log(text) {
         }));
   }
 
-var aID = new Lourah.gds.Amadeus.Id(JSON.parse(path2String(Lourah.jsFramework.parentDir() + "/Amadeus.key.json"));
+var aID = new Lourah.gds.Amadeus.Id(JSON.parse(path2String(Lourah.jsFramework.dir() + "/Amadeus.key.json"));
 
 var amd = new Lourah.gds.Amadeus(aID);
 
