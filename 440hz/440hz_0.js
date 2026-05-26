@@ -1,0 +1,59 @@
+Activity. importScript(Lourah.jsFramework.parentDir() + '/Lourah.android.Overview.js');
+
+Activity.importScript(Lourah.jsFramework.dir() + "/decisionEngine.js");
+Activity.importScript(Lourah.jsFramework.dir() + "/ui.js");
+
+var Overview = Lourah.android.Overview;
+
+// Construction de l’UI
+var view = Overview.buildFromSugar(UI);
+console.log(JSON.stringify(view));
+
+Activity.setContentView(view);
+
+// Accès direct via les noms $xxx
+var scenario     = view.$scenario;
+var liquidity    = view.$liquidity;
+var risk         = view.$risk;
+var opportunity  = view.$opportunity;
+var compute      = view.$compute;
+var scoreView    = view.$result.$score;
+var recView      = view.$result.$recommendation;
+
+function buildContext() {
+  var scen = scenario.getSelectedItem().toString().toLowerCase();
+
+  var ctx = {
+    liquidity: liquidity.getProgress(),
+    risk: risk.getProgress(),
+    opportunity: opportunity.getProgress(),
+    scenario: scen
+  };
+
+  if (scen === "optimiste") {
+    ctx.opportunity += 10;
+    ctx.risk -= 5;
+  } else if (scen === "pessimiste") {
+    ctx.opportunity -= 10;
+    ctx.risk += 10;
+  }
+
+  ctx.opportunity = Math.max(0, Math.min(100, ctx.opportunity));
+  ctx.risk        = Math.max(0, Math.min(100, ctx.risk));
+
+  return ctx;
+}
+
+function refresh() {
+  var ctx = buildContext();
+  var result = DecisionEngine.evaluate(ctx);
+
+  scoreView.setText("Score : " + result.score);
+  recView.setText("Recommandation : " + result.recommendation);
+}
+
+compute.setOnClickListener(new android.view.View.OnClickListener({
+  onClick: refresh
+}));
+
+refresh();

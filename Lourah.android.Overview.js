@@ -48,9 +48,17 @@ if (Lourah.android.Overview === undefined) {
             for (var method in view.attributes) {
               var value = view.attributes[method];
               if (value instanceof Array) {
+		      try {
                 widget[method].apply(widget, value.map(v => translate(eval(v))));
+		      } catch(e) {
+                  console.log("widget applu::" + method + "::[" + value + "]::" + e);
+		      }
                 } else {
-                widget[method](translate(eval(value)));
+                try {
+                  widget[method](translate(eval(value)));
+                  } catch(e) {
+                  console.log("widget::" + method + "::" + value + "::" + e);
+                  }
                 }
               }
             }

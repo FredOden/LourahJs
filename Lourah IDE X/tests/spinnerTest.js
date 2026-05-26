@@ -1,4 +1,4 @@
-Activity.importScript(Lourah.jsFramework.parentDir() + "/Overview.js");
+Activity.importScript(Lourah.jsFramework.parentDir() + "/Lourah.android.Overview.js");
 Activity.importScript(Lourah.jsFramework.parentDir() + "/Lourah.widget.Tokenizer.js");
 
 var $screen = Lourah.android.Overview.buildFromSugar(
