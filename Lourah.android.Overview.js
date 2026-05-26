@@ -47,11 +47,19 @@ if (Lourah.android.Overview === undefined) {
           if (view.attributes) {
             for (var method in view.attributes) {
               var value = view.attributes[method];
+		    if (method.charAt(0) == '_') {
+			    try {
+			    hookAction(widget, method, value);
+			    }  catch (e) {
+				    console.log("hook::" + method + "::" + value + "::" + e);
+			    }
+			    continue;
+		    }
               if (value instanceof Array) {
 		      try {
                 widget[method].apply(widget, value.map(v => translate(eval(v))));
 		      } catch(e) {
-                  console.log("widget applu::" + method + "::[" + value + "]::" + e);
+                  console.log("widget array apply::" + method + "::[" + value + "]::" + e);
 		      }
                 } else {
                 try {
@@ -85,6 +93,10 @@ if (Lourah.android.Overview === undefined) {
           throw new java.lang.JavaException("cannot find '" + key + "' in this view::" + JSON.stringify(views));
           }
         }
+
+	  function hookAction(widget, hook, hookScript) {
+		  console.log("hook::" + hook + "::" + hookScript);
+	  }
       
       Lourah.android.Overview.Sugar = function (sugarForm) {
         var parse = (o) => {

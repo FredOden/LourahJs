@@ -1,26 +1,17 @@
-/*
-try {
-  Activity = __Activity__
-  } catch(e) {}
-*/
-// Helpers pour dp() et sp()
-function __dp(v) {
-  return android.util.TypedValue.applyDimension(
-    android.util.TypedValue.COMPLEX_UNIT_DIP,
-    v
-    ,Activity.getResources().getDisplayMetrics()
-  );
-}
+/*------------
+for Overview plus
+--------------*/
 
-function __sp(v) {
-  return android.util.TypedValue.applyDimension(
-    android.util.TypedValue.COMPLEX_UNIT_SP,
+let setTypedValue = (v, typedValue) => android.util.TypedValue.applyDimension(
+    typedValue,
     v
-    ,Activity.getResources().getDisplayMetrics()
+    ,Activity.getApplicationContext().getResources().getDisplayMetrics()
   );
-}
-let dp = v => v;
-let sp = dp;
+
+let sp = v => setTypedValue(v, android.util.TypedValue.COMPLEX_UNIT_SP);
+let dp = v => setTypedValue(v, android.util.TypedValue.COMPLEX_UNIT_DIP);
+//let dp = v => v;
+//let sp = dp;
 
 var UI = {
   $root: {
@@ -30,10 +21,11 @@ var UI = {
 
     $title: {
       class: "android.widget.TextView",
-      setText: "'Cockpit décisionnel'",
-      setTextSize: sp(22)
-      //,setTypeface: android.graphics.Typeface.BOLD|0
-      //,setPaddingBottom: dp(12)
+      setText: "'Cockpit décisionnel'"
+      //,setTextSize: sp(22)Typeface.defaultFromStyle(Typeface.BOLD);
+      ,setTypeface: android.graphics.Typeface.defaultFromStyle(android.graphics.Typeface.BOLD)
+
+      ,_setPaddingBottom: dp(12)
     },
 
     $scenarioLabel: {
@@ -51,7 +43,7 @@ var UI = {
       class: "android.view.View",
       setLayoutHeight: dp(1),
       setLayoutWidth: android.view.ViewGroup.LayoutParams.MATCH_PARENT,
-      setBackground: "#CCCCCC",
+      setBackgroundColor: "'#CCCCCC'",
       setMarginTop: dp(8),
       setMarginBottom: dp(8)
     },
@@ -101,7 +93,7 @@ var UI = {
     $result: {
       class: "android.widget.LinearLayout",
       setOrientation: android.widget.LinearLayout.VERTICAL,
-      setBackground: "#EEEEEE",
+      setBackground: "'#EEEEEE'",
       //setPadding: dp(12),
       setMarginTop: dp(16),
 
