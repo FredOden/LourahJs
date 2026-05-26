@@ -25,7 +25,9 @@ var UI = {
       //,setTextSize: sp(22)Typeface.defaultFromStyle(Typeface.BOLD);
       ,setTypeface: android.graphics.Typeface.defaultFromStyle(android.graphics.Typeface.BOLD)
 
-      ,_setPaddingBottom: dp(12)
+      ,_setPaddingBottom:(w, m, s) => { dp(12);
+        console.log("#####hooked::" + m + "::" + this.class);
+         }
     },
 
     $scenarioLabel: {
