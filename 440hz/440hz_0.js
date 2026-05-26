@@ -7,9 +7,10 @@ var Overview = Lourah.android.Overview;
 
 // Construction de l’UI
 var view = Overview.buildFromSugar(UI);
-console.log(JSON.stringify(view));
+//console.log(JSON.stringify(view));
 
-Activity.setContentView(view);
+Activity.setContentView(view.$root);
+
 
 // Accès direct via les noms $xxx
 var scenario     = view.$scenario;
@@ -17,8 +18,8 @@ var liquidity    = view.$liquidity;
 var risk         = view.$risk;
 var opportunity  = view.$opportunity;
 var compute      = view.$compute;
-var scoreView    = view.$result.$score;
-var recView      = view.$result.$recommendation;
+var scoreView    = view.$score;
+var recView      = view.$recommendation;
 
 function buildContext() {
   var scen = scenario.getSelectedItem().toString().toLowerCase();
@@ -30,6 +31,8 @@ function buildContext() {
     scenario: scen
   };
 
+  console.log("scénario:" + scen);
+  
   if (scen === "optimiste") {
     ctx.opportunity += 10;
     ctx.risk -= 5;
@@ -44,16 +47,29 @@ function buildContext() {
   return ctx;
 }
 
+Activity.setTitle("440hz the perfect wave");
+//Activity.setContentView(view);
+
+
 function refresh() {
+  console.log("refresh");
+  
+  try {
   var ctx = buildContext();
   var result = DecisionEngine.evaluate(ctx);
 
   scoreView.setText("Score : " + result.score);
   recView.setText("Recommandation : " + result.recommendation);
+  
+    } catch(e) {
+    console.log("refresh::" + e);
+    }
 }
 
-compute.setOnClickListener(new android.view.View.OnClickListener({
-  onClick: refresh
-}));
+//compute.setOnClickListener(new dandroid.view.View.OnClickListener({
+//  onClick: refresh
+//}));
 
-refresh();
+//refresh();
+
+

@@ -49,12 +49,12 @@ if (Lourah.android.Overview === undefined) {
 	    var value = view.attributes[method];
 	    if (method.charAt(0) == '_') {
 	      try {
-		hookAction(widget, method, value);
+		hookAction(widget, method, value,translate);
 	      }  catch (e) {
 		console.log("hook::" + method + "::" + value + "::" + e);
 	      }
 	      continue;
-	    }
+	    } 
 	    if (value instanceof Array) {
 	      try {
 		widget[method].apply(widget, value.map(v => translate(eval(v))));
@@ -94,8 +94,8 @@ if (Lourah.android.Overview === undefined) {
       }
     }
 
-    function hookAction(widget, hook, hookScript) {
-      let hooked = "(" + hookScript + ")(widget,hook,hookScript);";
+    function hookAction(widget, hook, hookScript,translator) {
+      let hooked = "(" + hookScript + ")(widget,hook,translator);";
       eval(hooked);
     }
 
