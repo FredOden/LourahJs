@@ -7,85 +7,108 @@ if (Lourah.android.Overview === undefined) {
     var Method = Packages.java.lang.Method;
     var NoSuchMethodException = Packages.java.lang.NoSuchMethodException;
 
-    // Import the Internationalizer module for optional i18n support
+    /**
+     * ============================================================================
+     * @module Lourah.android.Overview
+     * @title Declarative Android UI Builder (Reflection + Sugar + Hooks)
+     *
+     * @purpose
+     *   Provide a declarative mechanism to build Android UIs using JavaScript objects.
+     *   Overview instantiates widgets through Java reflection, applies attributes,
+     *   executes hook functions, and recursively builds view hierarchies.
+     *
+     * @architecture
+     *   - Reflection-based widget instantiation
+     *   - Attribute application using eval() for Android constants
+     *   - Hook system for inline custom logic (keys starting with "_")
+     *   - Recursive construction of child views
+     *   - Flat-map registry for direct widget access
+     *
+     * @api
+     *   new Overview(descriptor, internationalizer?)
+     *   Overview#getJSONView(key, view)
+     *   Overview#getViews()
+     *   Overview#$(key)
+     *   Overview.Sugar
+     *   Overview.buildFromSugar()
+     *
+     * @usage
+     *   var view = Lourah.android.Overview.buildFromSugar(UI, i18n);
+     *   Activity.setContentView(view.$root);
+     *   view.$button.setOnClickListener(...);
+     *
+     * @notes
+     *   This is the low-level engine used by the Sugar DSL.
+     *   Sugar is the recommended entry point for UI definitions.
+     * ============================================================================
+     */
+
     Activity.importScript(Lourah.jsFramework.parentDir() + "/Lourah.android.Internationalizer.js");
 
-    /**
-     * Lourah.android.Overview
-     *
-     * A declarative UI builder for Android views driven by plain JavaScript objects (JSON-like).
-     * It instantiates Android widgets, applies attributes, wires event hooks,
-     * and builds a widget tree — all from a structured view descriptor.
-     *
-     * @param {Object} views         - A view descriptor object. Each key maps to a view definition
-     *                                 containing a "class", optional "attributes", and optional "content".
-     * @param {Object} internationalizer - Optional. An Internationalizer instance used to translate
-     *                                    string values in attributes. If omitted, strings are used as-is.
-     *
-     * @example
-     * var ov = new Lourah.android.Overview({
-     *   myButton: {
-     *     class: "android.widget.Button",
-     *     attributes: { setText: "'Click me'" }
-     *   }
-     * });
-     * var btn = ov.$("myButton");
-     */
     Lourah.android.Overview = function(views, internationalizer) {
       var widgets = {};
       var views;
       var vtop;
 
-      // Use identity function if no internationalizer is provided
+      /**
+       * ============================================================================
+       * === Instantiation & Translation ===========================================
+       * ============================================================================
+       *
+       * The translator is either the provided Internationalizer or an identity function.
+       */
       var translate = (internationalizer === undefined)
         ? s => s
         : internationalizer.translate;
 
       /**
-       * Instantiates and configures a single Android widget from a view descriptor.
+       * ============================================================================
+       * === Instantiation of a Single Widget ======================================
+       * ============================================================================
        *
-       * The view descriptor supports:
-       *   - "class"      : Android widget class (string or direct Java class reference)
-       *   - "attributes" : map of setter method names to values.
-       *                    Values are eval()'d so they can reference Android constants.
-       *                    Array values are spread as multiple arguments.
-       *                    Keys starting with '_' are treated as hooks (see hookAction).
-       *   - "content"    : nested view descriptors, recursively built and added as child views.
+       * Creates and configures a widget from its descriptor.
        *
-       * @param {string} key  - Unique identifier for this widget in the widgets registry.
-       * @param {Object} view - The view descriptor object.
-       * @returns {android.view.View} The constructed and configured Android view.
+       * Descriptor fields:
+       *   - class: Java class name or direct reference
+       *   - attributes: setter methods (values eval()'d)
+       *   - content: nested child descriptors
+       *   - hooks: keys starting with "_" execute custom JS logic
        */
       this.getJSONView = function(key, view) {
         var cl;
         var widget;
         try {
+
           /**
-           * @20201026: "class" can be a string (Java class name) or a direct Java class reference.
-           * Originally Overview was designed for JSON files where only strings are possible.
+           * === Class Resolution ===
+           * Supports both string class names and direct Java class references.
            */
           cl = view["class"];
           if (typeof cl === "string" || cl instanceof String) {
-            // Instantiate from class name string via Java reflection
             cl = Class.forName(cl);
             var cons = cl.getConstructor(Packages.android.content.Context);
             widget = cons.newInstance(Activity.getApplicationContext());
           } else {
-            // Direct Java class reference — instantiate directly
             widget = new cl(Activity.getApplicationContext());
           }
         } catch(e) {
-          // If instantiation fails, store the raw descriptor and return it
           widgets[key] = view;
           return view;
         }
 
-        // Apply attributes (setter methods) to the widget
+        /**
+         * ============================================================================
+         * === Attribute Application ==================================================
+         * ============================================================================
+         */
         if (view.attributes) {
           for (var method in view.attributes) {
             var value = view.attributes[method];
 
-            // Hook: keys starting with '_' trigger a hook action instead of a direct setter call
+            /**
+             * === Hook Execution ======================================================
+             * Hooks are inline JS functions stored under keys starting with "_".
+             */
             if (method.charAt(0) == '_') {
               try {
                 hookAction(widget, method, value, translate);
@@ -95,7 +118,10 @@ if (Lourah.android.Overview === undefined) {
               continue;
             }
 
-            // Array value: spread as multiple arguments to the setter
+            /**
+             * === Setter Invocation ===================================================
+             * Supports single values and arrays (spread as multiple arguments).
+             */
             if (value instanceof Array) {
               try {
                 widget[method].apply(widget, value.map(v => translate(eval(v))));
@@ -103,7 +129,6 @@ if (Lourah.android.Overview === undefined) {
                 console.log("widget array apply::" + method + "::[" + value + "]::" + e);
               }
             } else {
-              // Single value: call the setter directly
               try {
                 widget[method](translate(eval(value)));
               } catch(e) {
@@ -113,32 +138,43 @@ if (Lourah.android.Overview === undefined) {
           }
         }
 
-        // Recursively build and attach child views
+        /**
+         * ============================================================================
+         * === Child View Construction ===============================================
+         * ============================================================================
+         */
         if (view.content) {
           for (var contained in view.content) {
             widget.addView(this.getJSONView(contained, view.content[contained]));
           }
         }
 
-        // Ensure widget keys are unique in the registry
+        /**
+         * === Registry Integrity Check ==============================================
+         */
         if (widgets[key]) throw "widget key::" + key + "::already defined::" + JSON.stringify(widgets[key]);
         widgets[key] = widget;
         return widget;
       }
 
-      // Build all top-level views from the descriptor
+      /**
+       * Build all top-level widgets.
+       */
       for(var key in views) {
         this.getJSONView(key, views[key]);
       }
 
-      /** Returns the raw views descriptor. */
+      /**
+       * Return raw descriptor.
+       */
       this.getViews = () => views;
 
       /**
-       * Widget accessor.
-       * @param {string} [key] - Widget key. If omitted, returns the full widgets map.
-       * @returns {android.view.View|Object} The requested widget, or all widgets if no key given.
-       * @throws {java.lang.JavaException} If the key is not found in the registry.
+       * ============================================================================
+       * === Flat-Map Accessor ======================================================
+       * ============================================================================
+       *
+       * Returns a widget by key, or the entire registry if no key is provided.
        */
       this.$ = key => {
         if (key === undefined) return widgets;
@@ -148,14 +184,11 @@ if (Lourah.android.Overview === undefined) {
     }
 
     /**
-     * Executes a hook script on a widget.
-     * Hook scripts are inline JS functions stored as attribute values for keys starting with '_'.
-     * They receive the widget, the hook name, and the translator function as arguments.
+     * ============================================================================
+     * === Hook Engine =============================================================
+     * ============================================================================
      *
-     * @param {android.view.View} widget     - The target widget.
-     * @param {string}            hook       - The hook method name (e.g. '_setPaddingBottom').
-     * @param {string|Function}   hookScript - The hook implementation (function or JS source string).
-     * @param {Function}          translator - The active translation function.
+     * Executes a hook function stored under a key starting with "_".
      */
     function hookAction(widget, hook, hookScript, translator) {
       let hooked = "(" + hookScript + ")(widget,hook,translator);";
@@ -163,45 +196,28 @@ if (Lourah.android.Overview === undefined) {
     }
 
     /**
-     * Lourah.android.Overview.Sugar
-     *
-     * A syntactic sugar layer over the Overview view descriptor format.
-     * Allows writing UI definitions in a flattened, more readable JS object style,
-     * where child views are identified by keys starting with '$', and all other keys
-     * are treated as widget attributes.
-     *
-     * @param {Object} sugarForm - A sugar-style UI descriptor.
-     *
-     * @example
-     * var sugar = new Lourah.android.Overview.Sugar({
-     *   $root: {
-     *     class: "android.widget.LinearLayout",
-     *     setOrientation: android.widget.LinearLayout.VERTICAL,
-     *     $title: {
-     *       class: "android.widget.TextView",
-     *       setText: "'Hello'"
-     *     }
-     *   }
-     * });
-     * var content = sugar.getContent();
+     * ============================================================================
+     * @section Sugar DSL
+     * @description
+     *   Sugar is a compact syntax for describing UI trees.
+     *   Keys starting with "$" represent child views.
+     *   All other keys are treated as attributes.
+     * ============================================================================
      */
     Lourah.android.Overview.Sugar = function (sugarForm) {
 
       /**
-       * Recursively converts a sugar object into a canonical Overview view descriptor.
-       * - Keys starting with '$' become "content" entries (child views).
-       * - The "class" key is preserved as-is.
-       * - All other keys become "attributes" entries.
+       * ============================================================================
+       * === Sugar Parser ===========================================================
+       * ============================================================================
        *
-       * @param {Object} o - A sugar-style view node.
-       * @returns {Object} A canonical view descriptor { class, attributes, content }.
+       * Converts Sugar syntax into canonical Overview descriptors.
        */
       var parse = (o) => {
         try {
           var ov = {};
           for(item in o) {
             if (item.match(/[\$].*/)) {
-              // '$xxx' keys are child views → goes into "content"
               ov.content = ov.content || {};
               ov.content[item] = parse(o[item]);
               continue;
@@ -210,7 +226,6 @@ if (Lourah.android.Overview === undefined) {
               ov.class = o.class;
               continue;
             }
-            // All other keys are widget setter methods → goes into "attributes"
             ov.attributes = ov.attributes || {};
             ov.attributes[item] = o[item];
           }
@@ -220,24 +235,14 @@ if (Lourah.android.Overview === undefined) {
         }
       };
 
-      /** @returns {Object} The parsed canonical content descriptor (top-level children). */
+      /** Return canonical content descriptor */
       this.getContent = () => parse(sugarForm).content;
     }
 
     /**
-     * Lourah.android.Overview.buildFromSugar
-     *
-     * Convenience factory: builds a complete widget map directly from a Sugar descriptor.
-     * Combines Sugar parsing and Overview instantiation in one call.
-     *
-     * @param {Object} sugar            - A Sugar-style UI descriptor.
-     * @param {Object} [internationalizer] - Optional Internationalizer instance.
-     * @returns {Object} A flat map of all instantiated widgets, keyed by their '$xxx' names.
-     *
-     * @example
-     * var view = Lourah.android.Overview.buildFromSugar(UI);
-     * Activity.setContentView(view.$root);
-     * var btn = view.$myButton;
+     * ============================================================================
+     * === Factory: Sugar → Overview → Flat-Map ====================================
+     * ============================================================================
      */
     Lourah.android.Overview.buildFromSugar = function(sugar, internationalizer) {
       return (new Lourah.android.Overview(
@@ -246,3 +251,4 @@ if (Lourah.android.Overview === undefined) {
     }
   })();
 }
+

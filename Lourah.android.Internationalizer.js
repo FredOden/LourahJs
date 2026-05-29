@@ -4,33 +4,81 @@ if (Lourah.android.Internationalizer === undefined) {
   (function() {
 
     /**
-     * Internationalizer
+     * ============================================================================
+     * @module Lourah.android.Internationalizer
+     * @title Lightweight i18n Engine for LourahJS (Vocabulary + Symbolic Keys)
      *
-     * A lightweight i18n (internationalization) engine for LourahJS on Android.
-     * Translates strings based on the device locale, using one or more vocabulary
-     * objects loaded at runtime.
+     * @purpose
+     *   Provide a simple, efficient internationalization mechanism for LourahJS
+     *   applications running on Android. The engine translates strings based on:
+     *     - Device locale (language + country)
+     *     - One or more vocabulary objects
+     *     - Symbolic keys such as "@Open", "@Save", "@Quit", etc.
+     *     - A deterministic resolution order
+     *     - A translation cache for performance
      *
-     * Vocabulary format:
-     * {
-     *   "Hello": {
-     *     "fr": "Bonjour",
-     *     "fr-FR": "Bonjour (France)",
-     *     "default": "Hello"
-     *   }
-     * }
+     * @architecture
+     *   - Maintains an ordered list of vocabularies
+     *   - Uses java.util.Locale for language and country detection
+     *   - Performs translation lookup with fallback rules
+     *   - Caches resolved translations until locale changes
      *
-     * Resolution order for a given string:
-     *   1. Cache hit → return immediately
-     *   2. Exact language+country match (e.g. "fr-FR")
-     *   3. Language-only match (e.g. "fr")
-     *   4. "default" fallback
-     *   5. Original string unchanged
+     * @i18n
+     *   "i18n" is a numeronym for "internationalization":
+     *     - i = first letter
+     *     - n = last letter
+     *     - 18 = number of letters in between
+     *   This convention is widely used in software engineering.
      *
-     * @example
-     * var i18n = new Lourah.android.Internationalizer();
-     * i18n.addVocabulary(myStrings);
-     * var label = i18n.translate("Hello"); // → "Bonjour" on a French device
+     * @symbols
+     *   The Internationalizer supports symbolic UI keys such as:
+     *     "@Open", "@Save", "@SaveAs", "@Quit", "@About", "@Preferences", ...
+     *
+     *   These keys are treated as *semantic identifiers* rather than literal text.
+     *   They must appear exactly as-is in the vocabulary:
+     *
+     *     {
+     *       "@Open": { "fr": "Ouvrir", "default": "Open" },
+     *       "@Save": { "fr": "Enregistrer", "default": "Save" }
+     *     }
+     *
+     *   Any UI component (Sugar, Overview, menus, dialogs…) may use these symbols.
+     *   The Internationalizer simply resolves them like any other string.
+     *
+     * @vocabulary
+     *   Vocabulary files define all translatable strings for a given language.
+     *   They follow this structure:
+     *
+     *     {
+     *       "<key>": {
+     *         "<language>": "<translation>",
+     *         "<language-country>": "<translation>",
+     *         "default": "<fallback>"
+     *       },
+     *       ...
+     *     }
+     *
+     *   - <key> can be:
+     *       - a literal string: "Hello", "Cancel", "Retry"
+     *       - a symbolic key: "@Open", "@Save", "@Quit", "@About"
+     *
+     *   - <language> is a two-letter ISO code: "fr", "en", "es", ...
+     *   - <language-country> is a language + country code: "fr-FR", "fr-CA", ...
+     *   - "default" is used as a fallback when no locale-specific entry matches.
+     *
+     * @usage
+     *   var i18n = new Lourah.android.Internationalizer();
+     *   i18n.addVocabulary(Lourah.android.Vocabulary.fr);
+     *   var label = i18n.translate("@Open");
+     *
+     * @notes
+     *   - Multiple vocabularies can be added; they are searched in insertion order.
+     *   - Symbolic keys ("@Open", "@Save", ...) decouple UI semantics from text.
+     *   - The Internationalizer does not interpret keys; it just looks them up.
+     *   - Cache is cleared automatically when locale changes.
+     * ============================================================================
      */
+
     function Internationalizer() {
       var vocabularies = [];  // ordered list of vocabulary objects
       var cache = {};         // translation cache, reset on locale change
@@ -39,6 +87,10 @@ if (Lourah.android.Internationalizer === undefined) {
       var k_language_country; // e.g. "fr-FR"
 
       /**
+       * ============================================================================
+       * === Locale Management ======================================================
+       * ============================================================================
+       *
        * Sets the active locale and clears the translation cache.
        * Called automatically with the device default locale on construction.
        *
@@ -52,22 +104,24 @@ if (Lourah.android.Internationalizer === undefined) {
       };
 
       /**
+       * ============================================================================
+       * === Vocabulary Registration ================================================
+       * ============================================================================
+       *
        * Adds a vocabulary to the translation chain.
        * Multiple vocabularies can be added; they are searched in insertion order.
        *
        * @param {Object} vocabulary - A map of original strings to locale-keyed translations.
-       *
-       * @example
-       * i18n.addVocabulary({
-       *   "Optimistic": { "fr": "Optimiste", "default": "Optimistic" },
-       *   "Neutral":    { "fr": "Neutre",    "default": "Neutral" }
-       * });
        */
       this.addVocabulary = function(vocabulary) {
         vocabularies.push(vocabulary);
       };
 
       /**
+       * ============================================================================
+       * === Translation Engine =====================================================
+       * ============================================================================
+       *
        * Translates a string using the active locale.
        * Results are cached for performance.
        *

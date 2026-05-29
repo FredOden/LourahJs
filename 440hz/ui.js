@@ -18,7 +18,7 @@ var UI = {
     class: "android.widget.LinearLayout",
     setOrientation: android.widget.LinearLayout.VERTICAL
     ,setBackgroundColor: 0xfff0b0a0|0
-    //setPadding: dp(16),
+    ,setPaddings: [dp(16), dp(8), dp(16), dp(8)]
     ,$title: {
       class: "android.widget.TextView",
       setText: "'Cockpit décisionnel'"
@@ -52,19 +52,21 @@ var UI = {
         w.setAdapter(adapter);
         }
       }
-    ,
+    
     /*
-    $sep1: {
+    ,$sep1: {
       class: "android.view.View",
       setLayoutHeight: dp(1),
       setLayoutWidth: android.view.ViewGroup.LayoutParams.MATCH_PARENT,
-      setBackgroundColor: 0xffCCCCCC,
+      setBackgroundColor: 0xffCCCCCC |0,
       //setMarginTop: dp(8),
       //setMarginBottom: dp(8)
-      setMargin: [dp(8), 0, dp(8), 0]
-      },
+      setMargins: [0, dp(8), 0, dp(8)]
+      }
     */
-    $liquidityLabel: {
+    
+    
+    ,$liquidityLabel: {
       class: "android.widget.TextView",
       setText: "'Liquidité'",
       setTextSize: sp(10)
@@ -106,7 +108,7 @@ var UI = {
       ,setOnClickListener: {
 	onClick: v => refresh()
       }
-      //setMarginTop: dp(12)
+      ,setMargins: [ dp(12), dp(8), dp(12), dp(8) ]
       },
     $result: {
       class: "android.widget.LinearLayout",
