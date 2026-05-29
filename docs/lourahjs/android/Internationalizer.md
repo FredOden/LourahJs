@@ -11,8 +11,8 @@ Lightweight i18n Engine for LourahJS
 `Lourah.android.Internationalizer` is a minimal, fast, dependency‑free internationalization engine designed for LourahJS.  
 It provides:
 
-- automatic locale detection  
 - vocabulary‑based translation  
+- automatic locale detection  
 - symbolic key resolution  
 - multi‑vocabulary chaining  
 - translation caching  

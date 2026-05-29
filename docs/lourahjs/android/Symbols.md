@@ -14,6 +14,7 @@ They are simple strings beginning with `@`, such as:
 ```
 @Open
 @Save
+@SaveAs
 @Quit
 ```
 

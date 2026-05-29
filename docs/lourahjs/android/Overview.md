@@ -11,7 +11,7 @@ Declarative Android UI Builder for LourahJS
 `Lourah.android.Overview` is the foundational UI engine of LourahJS.  
 It builds Android interfaces declaratively using:
 
-- Java Reflection to instantiate widgets  
+- Java Reflection to instantiate ui widgets  
 - JSON-like descriptors to define UI trees  
 - Hook functions for dynamic behavior  
 - A flat-map for direct widget access  

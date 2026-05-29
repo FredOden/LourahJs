@@ -21,8 +21,8 @@ It is the core data structure used by the **Internationalizer** to resolve UI te
 ## 2. Purpose
 Vocabularies allow LourahJS applications to:
 
-- centralize all translations  
 - override text per language or per region  
+- centralize all translations  
 - use symbolic keys for semantic UI labels  
 - keep UI descriptors clean and language‑agnostic  
 
